@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load datasets
-raw_data_path = '/mnt/data/movie_details.csv'
+raw_data_path = 'https://raw.githubusercontent.com/B0ggar1/fds/refs/heads/main/movie_details.csv'
 preprocessed_data_path = '/mnt/data/preprocessed_movie_details.csv'
 
 raw_data = pd.read_csv(raw_data_path)
