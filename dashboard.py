@@ -26,24 +26,27 @@ st.title("Dataset Analysis and Model Evaluation")
 # Section 1: Feature Distribution Visualization
 st.header("Feature Distributions")
 
+# Dataset selection button
+dataset_choice = st.radio("Select Dataset to Visualize", ("Raw Dataset", "Preprocessed Dataset"))
+
 # Feature selection
 features = list(raw_data.columns)
 selected_feature = st.selectbox("Select a feature to visualize:", features)
 
-# Raw dataset distribution
-st.subheader("Raw Dataset Distribution")
-fig, ax = plt.subplots()
-sns.histplot(raw_data[selected_feature], kde=True, ax=ax, color="blue", label="Raw Data")
-plt.legend()
-st.pyplot(fig)
-
-# Preprocessed dataset distribution
-if selected_feature in preprocessed_data.columns:
-    st.subheader("Preprocessed Dataset Distribution")
+if dataset_choice == "Raw Dataset":
+    st.subheader("Raw Dataset Distribution")
     fig, ax = plt.subplots()
-    sns.histplot(preprocessed_data[selected_feature], kde=True, ax=ax, color="green", label="Preprocessed Data")
+    sns.histplot(raw_data[selected_feature], kde=True, ax=ax, color="blue", label="Raw Data")
     plt.legend()
     st.pyplot(fig)
+
+elif dataset_choice == "Preprocessed Dataset":
+    if selected_feature in preprocessed_data.columns:
+        st.subheader("Preprocessed Dataset Distribution")
+        fig, ax = plt.subplots()
+        sns.histplot(preprocessed_data[selected_feature], kde=True, ax=ax, color="green", label="Preprocessed Data")
+        plt.legend()
+        st.pyplot(fig)
 
 # Section 2: Comparison of Evaluation Scores
 st.header("Evaluation Scores Comparison")
